@@ -166,7 +166,7 @@ public class GameOfLife {
 		int cols = arr[0].length; // The number of columns in the board.
 		for (int i = 1; i < rows - 1; i++) {
 			for (int j = 1; j < cols - 1; j++) {
-				// Prints arr[i][j] with two characters in between.
+				// Prints arr[i][j] with two characters inbetween it.
 				System.out.printf("  %d", arr[i][j]);
 			}
 			System.out.println();
@@ -215,3 +215,4 @@ public class GameOfLife {
 		StdDraw.show();
 		StdDraw.pause(200);
 	}
+}

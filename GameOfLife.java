@@ -1,4 +1,4 @@
-/**
+/*
  * Game of Life.
  * Usage: "java GameOfLife fileName"
  * The file represents the initial board.
@@ -73,16 +73,16 @@ public class GameOfLife {
 		int rows = Integer.parseInt(in.readLine());
 		int cols = Integer.parseInt(in.readLine());
 		int[][] newBoard = new int[rows + 2][cols + 2];
-		String line = ""; // declare a string which will contain each line in the data file.
+		String line = ""; // Declare a string that contains every line in the data file.
 		for (int i = 1; i < rows + 1; i++) {
 			line = in.readLine();
 			for (int j = 1; j < cols + 1; j++) {
 				if (j <= line.length()) {
-					// check if a character in a line (which isn't empty) equals to 'x'.
+					// Check if a character in a non-empty line equals to 'x'.
 					if (line.charAt(j - 1) == 'x') {
-						newBoard[i][j] = 1; // then alive
+						newBoard[i][j] = 1; // Then it is alive.
 					} else {
-						newBoard[i][j] = 0; // else dead
+						newBoard[i][j] = 0; // Else it is dead.
 					}
 				}
 				
@@ -95,15 +95,15 @@ public class GameOfLife {
 	// Uses the cellValue(board,i,j) function to compute the value of each
 	// cell in the new board. Returns the new board.
 	public static int[][] evolve(int[][] board) {
-		int rows = board.length; // number of rows in board.
-		int cols = board[0].length; // number of columns in board.
-		int[][] newBoard = new int[rows][cols]; // Create a new board for the next generation
+		int rows = board.length; // The number of rows in the board.
+		int cols = board[0].length; // The number of columns in the board.
+		int[][] newBoard = new int[rows][cols]; // Creates a new board for the next generation.
 		for (int i = 1; i < rows - 1; i++) {
 			for (int j = 1; j < cols - 1; j++) {
 				newBoard[i][j] = cellValue(board, i, j);
 			}
 		}
-		return newBoard; // Return the new board
+		return newBoard; // Return the new board.
 	}
 
 	// Returns the value that cell (i,j) should have in the next generation.
@@ -119,14 +119,14 @@ public class GameOfLife {
 	// Uses the count(board,i,j) function to count the number of alive neighbors.
 	public static int cellValue(int[][] board, int i, int j) {
 		int neighbors = count(board, i, j); // get the number of neighbors using count().
-		// change the value of board[i][j] according to the rules provided.
+		// Changes the value of the board[i][j] according to the given rules.
 		switch (board[i][j]) {
-			case 0: // if dead
+			case 0: // If it is dead.
 				if (neighbors == 3) {
 					return 1;
 				}
 				return 0;
-			case 1: // if alive
+			case 1: // If it is alive.
 				if ((neighbors < 2) || (neighbors > 3)) {
 					return 0;
 				}
@@ -143,13 +143,13 @@ public class GameOfLife {
 	// Assumes that j is at least 1 and at most the number of columns in the board -
 	// 1.
 	public static int count(int[][] board, int i, int j) {
-		int count = 0; // declare a count integer that will contain the number of alive neighbors of board[i][j].
+		int count = 0; //Declares a count integer that contains the number of alive neighbors in the board[i][j].
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
 				if (((i + x) < board.length) && ((j + y) < board[0].length)) {
-					// check if not board[i][j].
+					// Checks if not board[i][j].
 					if (!((x == 0) && (y == 0))) {
-						// check if alive
+						// Checks if alive.
 						if (board[i + x][j + y] == 1) {
 							count++;
 						}
@@ -162,11 +162,11 @@ public class GameOfLife {
 
 	// Prints the board. Alive and dead cells are printed as 1 and 0, respectively.
 	public static void print(int[][] arr) {
-		int rows = arr.length; // number of rows in board.
-		int cols = arr[0].length; // number of columns in board.
+		int rows = arr.length; // The number of rows in the board.
+		int cols = arr[0].length; // The number of columns in the board.
 		for (int i = 1; i < rows - 1; i++) {
 			for (int j = 1; j < cols - 1; j++) {
-				// print arr[i][j] with 2 characters between it.
+				// Prints arr[i][j] with two characters in between.
 				System.out.printf("  %d", arr[i][j]);
 			}
 			System.out.println();
@@ -215,4 +215,3 @@ public class GameOfLife {
 		StdDraw.show();
 		StdDraw.pause(200);
 	}
-}
